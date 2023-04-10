@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Navbar</title>
+  <link rel="stylesheet" href="../static/styles.css"> <!-- Include your CSS file -->
+  <style type="text/css">
+  	body, html {
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 10px;
+}
+
+.navbar-logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.navbar-section a {
+  margin-right: 10px;
+}
+
+.navbar-search input[type="text"] {
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.navbar-lang select {
+  margin-right: 5px;
+}
+
+.navbar-wishlist {
+  margin-right: 5px;
+}
+
+.navbar-profile a {
+  margin-right: 5px;
+}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-logo">My Website</div>
+    <div class="navbar-section">
+      <a href="#section1">Section 1</a>
+      <a href="#section2">Section 2</a>
+      <!-- Add more sections as needed -->
+    </div>
+    <div class="navbar-search">
+      <input type="text" placeholder="Search...">
+      <button type="submit">Search</button>
+    </div>
+    <div class="navbar-lang">
+      <select>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <!-- Add more language options as needed -->
+      </select>
+    </div>
+    <div class="navbar-wishlist">
+      <a href="#wishlist">Wishlist</a>
+    </div>
+    <div class="navbar-profile">
+      <!-- Show "My Profile" or "Login" and "Sign Up" based on user login status -->
+      {% if user.is_authenticated %}
+        <a href="{% url 'user_page' %}">My Profile</a>
+      {% else %}
+        <a href="#login">Login</a>
+        <a href="#signup">Sign Up</a>
+      {% endif %}
+    </div>
+  </nav>
+  <div>
+  {% block content %}
+  {% endblock %}
+  </div>
+</body>
+</html>

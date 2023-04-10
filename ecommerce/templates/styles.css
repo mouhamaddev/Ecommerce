@@ -1,0 +1,39 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 10px;
+}
+
+.navbar-logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.navbar-section a {
+  margin-right: 10px;
+}
+
+.navbar-search input[type="text"] {
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.navbar-lang select {
+  margin-right: 5px;
+}
+
+.navbar-wishlist {
+  margin-right: 5px;
+}
+
+.navbar-profile a {
+  margin-right: 5px;
+}

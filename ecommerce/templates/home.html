@@ -1,0 +1,67 @@
+{% include 'main.html' %}
+{% block content %}
+<style type="text/css">
+	.card {
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-rating {
+  font-size: 14px;
+  color: #888;
+}
+
+.card-body {
+  margin-top: 10px;
+}
+
+.card-price {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-shipping,
+.card-people {
+  font-size: 14px;
+  color: #888;
+  margin-top: 5px;
+}
+</style>
+<br>
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Item Name</h3>
+    <div class="card-rating">4.5 / 5.0</div>
+  </div>
+  <div class="card-body">
+    <p class="card-price">$99.99</p>
+    <p class="card-shipping">Ships to: US</p>
+    <p class="card-people">5,000 people bought this item</p>
+  </div>
+</div>
+
+<br><br>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+
+
+{% endblock %}
