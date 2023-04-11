@@ -9,21 +9,14 @@ from django import forms
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='profile_images/')
-    address = models.CharField(max_length=255)
-    user_first_name = models.CharField(max_length=30)
-    user_last_name = models.CharField(max_length=30)
-    user_email = models.EmailField(unique=True)
-    user_password = models.CharField(max_length=128)
-    country = models.CharField(max_length=100)
-    address = models.CharField(max_length=255)
-    user_last_login = models.DateTimeField(null=True, blank=True)
-    payment_methods = models.TextField(null=True, blank=True)
-    wishlist = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
-    order_history = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
-
-    def __str__(self):
-        return self.user.username
+    #image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
+    #address = models.CharField(max_length=255, blank=True, null=True)
+    #country = models.CharField(max_length=100, blank=True, null=True)
+    #address = models.CharField(max_length=255, blank=True, null=True)
+    #user_last_login = models.DateTimeField(null=True, blank=True)
+    #payment_methods = models.TextField(null=True, blank=True)
+    #wishlist = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
+    #order_history = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
 
 class Country(models.Model):
     name = models.CharField(max_length=255)
