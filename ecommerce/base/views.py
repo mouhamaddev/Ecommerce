@@ -9,52 +9,63 @@ from .models import MyForm
 
 
 def home(request):
-    if request.method == 'POST':
-        form = MyForm(request.POST)
-        if form.is_valid():
-            HttpResponse("HEHE SIU")
-    else:
-        form = MyForm()
-    return render(request, 'home.html', {'form': form})
+    return render(request, 'home.html')
 
 
 def user_login(request):
     if request.user.is_authenticated:
         return redirect('user_page')
 
-    if request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        
-        try:
-            user = User.objects.get(username=username)
-        except User.DoesNotExist:
-            return HttpResponse("User does not exist")
+    if request.method == 'POST':
+        form = MyForm(request.POST)
+        if form.is_valid():
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            
+            try:
+                user = User.objects.get(username=username)
+            except User.DoesNotExist:
+                return HttpResponse("User does not exist")
 
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('user_page')
-        else:
-            return HttpResponse("Username and password do not match")
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('user_page')
+            else:
+                return HttpResponse("Username and password do not match")
+    else:
+        form = MyForm()
 
-    return render(request, 'login.html')
+
+    return render(request, 'login.html', {'form': form})
 
 
 def user_register(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password1']
-        if User.objects.filter(username=username).exists():
-            return HttpResponse("User already exists")
-        else:
-            user = User.objects.create_user(username=username, password=password)
-            user.save()
-            user = User.objects.get(username=username)
-            login(request, user)
+
+
+
+    if request.user.is_authenticated:
         return redirect('user_page')
+
+    if request.method == 'POST':
+        form = MyForm(request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password1']
+            if User.objects.filter(username=username).exists():
+                return HttpResponse("User already exists")
+            else:
+                user = User.objects.create_user(username=username, password=password)
+                user.save()
+                user = User.objects.get(username=username)
+                login(request, user)
+            return redirect('user_page')
     else:
-        return render(request, 'register.html')
+        form = MyForm()
+
+
+
+    return render(request, 'register.html', {'form': form})
 
 
 @login_required
