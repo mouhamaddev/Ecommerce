@@ -36,7 +36,6 @@ def user_login(request):
     else:
         form = MyForm()
 
-
     return render(request, 'login.html', {'form': form})
 
 
