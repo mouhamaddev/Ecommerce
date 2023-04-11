@@ -66,10 +66,10 @@ a {
             <form method="post">
                 {% csrf_token %}
                 <p>f name, l name, Gender, bday</p>
-                <input type="text" name="username" placeholder="Username">
-                <input type="email" name="email" placeholder="Email">
-                <input type="password" name="password1" placeholder="Password">
-                <input type="password" name="password2" placeholder="Confirm Password">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password1" placeholder="Password" required>
+                <input type="password" name="password2" placeholder="Confirm Password" required>
                 <p>by cliking you agree to terms</p>
                 {{ form.as_p }}
                 <input type="submit" value="Register">

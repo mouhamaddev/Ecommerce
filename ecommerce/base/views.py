@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import MyForm
+import secrets
 
 
 def home(request):
@@ -41,15 +42,19 @@ def user_login(request):
 
 def user_register(request):
 
-
-
     if request.user.is_authenticated:
         return redirect('user_page')
+    
+    #my_model_instance = MyModel.objects.get(id=1)
+    #my_model_instance.my_field = 'new value'
 
     if request.method == 'POST':
         form = MyForm(request.POST)
         if form.is_valid():
-            username = request.POST['username']
+
+            token = secrets.token_hex(8)
+            
+            username = request.POST['email']
             password = request.POST['password1']
             if User.objects.filter(username=username).exists():
                 return HttpResponse("User already exists")
@@ -61,8 +66,6 @@ def user_register(request):
             return redirect('user_page')
     else:
         form = MyForm()
-
-
 
     return render(request, 'register.html', {'form': form})
 

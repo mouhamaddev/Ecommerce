@@ -22,6 +22,8 @@ class UserProfile(models.Model):
     wishlist = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
     order_history = ArrayField(models.PositiveIntegerField(), blank=True, null=True)
 
+    def __str__(self):
+        return self.user.username
 
 class Country(models.Model):
     name = models.CharField(max_length=255)
